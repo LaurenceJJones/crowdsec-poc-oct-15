@@ -40,10 +40,12 @@ func (s *PIDPlugin) Notify(ctx context.Context, notification *protobufs.Notifica
 	pid, err := strconv.Atoi(notification.Text)
 	if err != nil {
 		logger.Debug("Recieved invalid pid number")
+		return &protobufs.Empty{}, nil
 	}
 	proc, err := os.FindProcess(pid)
 	if err != nil {
 		logger.Info(fmt.Sprintf("Tried to kill PID %d could not do it some error", pid))
+		return &protobufs.Empty{}, nil
 	}
 	proc.Kill()
 	return &protobufs.Empty{}, nil

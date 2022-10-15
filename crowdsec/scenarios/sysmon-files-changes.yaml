@@ -5,7 +5,7 @@ description: "POC detect files created with custom extension"
 filter: |
   evt.Meta.service == 'sysmon' &&
   evt.Parsed.EventID in ['11'] &&
-  any(File(ransom_ext.txt), { Lower(evt.Parsed.TargetFilename) endsWith Lower(#)})
+  any(File('ransom_ext.txt'), { Lower(evt.Parsed.TargetFilename) endsWith Lower(#)})
 #Lower(evt.Parsed.TargetFilename) endsWith '.enc'
 capacity: 5
 groupby: evt.Parsed.ProcessId
@@ -18,3 +18,7 @@ labels:
 scope:
   type: pid
   expression: evt.Parsed.ProcessId
+data:
+  - source_url: https://raw.githubusercontent.com/LaurenceJJones/crowdsec-poc-oct-15/main/ransom_ext.txt
+    dest_file: ransom_ext.txt
+    type: string

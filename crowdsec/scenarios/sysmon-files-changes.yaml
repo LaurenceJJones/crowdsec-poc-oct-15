@@ -1,0 +1,19 @@
+# windows auth bruteforce
+type: leaky
+name: crowdsecurity/sysmon-files-created
+description: "POC detect files created with custom extension"
+filter: |
+  evt.Meta.service == 'sysmon' &&
+  evt.Parsed.EventID in ['11'] &&
+  Lower(evt.Parsed.TargetFilename) endsWith '.enc'
+capacity: 5
+groupby: evt.Parsed.ProcessId
+blackhole: 1m
+leakspeed: "2s"
+labels:
+ type: file-bf
+ remediation: true
+ os: windows
+scope:
+  type: pid
+  expression: evt.Parsed.ProcessId

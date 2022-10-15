@@ -1,0 +1,6 @@
+name: pkill_pid
+filters:
+  - Alert.Remediation == true && Alert.GetScope() == 'pid'
+notifications:
+  - pid_default
+on_success: break

@@ -1,0 +1,9 @@
+type: pid
+name: pid_default
+
+log_level: info
+
+format: |
+  {{range . -}}
+  {{ .Source.Value -}}
+  {{end -}}

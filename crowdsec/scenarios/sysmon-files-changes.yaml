@@ -5,7 +5,8 @@ description: "POC detect files created with custom extension"
 filter: |
   evt.Meta.service == 'sysmon' &&
   evt.Parsed.EventID in ['11'] &&
-  Lower(evt.Parsed.TargetFilename) endsWith '.enc'
+  any(File(ransom_ext.txt), { Lower(evt.Parsed.TargetFilename) endsWith Lower(#)})
+#Lower(evt.Parsed.TargetFilename) endsWith '.enc'
 capacity: 5
 groupby: evt.Parsed.ProcessId
 blackhole: 1m

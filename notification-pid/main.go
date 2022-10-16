@@ -9,6 +9,7 @@ import (
 	"github.com/crowdsecurity/crowdsec/pkg/protobufs"
 	"github.com/hashicorp/go-hclog"
 	plugin "github.com/hashicorp/go-plugin"
+	"github.com/shirou/gopsutil/process"
 	"gopkg.in/yaml.v2"
 )
 
@@ -42,12 +43,13 @@ func (s *PIDPlugin) Notify(ctx context.Context, notification *protobufs.Notifica
 		logger.Info("Recieved invalid pid number")
 		return &protobufs.Empty{}, nil
 	}
-	proc, err := os.FindProcess(pid)
+	proc, err := process.NewProcess(int32(pid))
 	if err != nil {
 		logger.Info(fmt.Sprintf("Tried to kill PID %d could not do it some error", pid))
 		logger.Info(fmt.Sprintf("Error: %s", err.Error()))
 		return &protobufs.Empty{}, nil
 	}
+	proc.Suspend()
 	proc.Kill()
 	return &protobufs.Empty{}, nil
 }

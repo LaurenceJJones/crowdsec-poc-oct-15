@@ -5,7 +5,7 @@ filter: |
   evt.Meta.service == 'sysmon' &&
   evt.Parsed.EventID in ['11']
 
-capacity: 100
+capacity: 200
 groupby: evt.Parsed.ProcessId
 blackhole: 1m
 leakspeed: "2s"

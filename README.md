@@ -1,5 +1,5 @@
 ## crowdsec-poc-oct-15
-This is just for fun, crowdsec detects via sysmon files created with custom extension (.enc) then kills the PID
+This is just for fun, crowdsec detects via sysmon files created with known ransomware extensions then kills the PID.
 
 ### Folders:
 //`mal`\\\\ NOT USED ANYMORE Checkout ransomware simulator [here](https://github.com/NextronSystems/ransomware-simulator)</br>

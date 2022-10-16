@@ -2,9 +2,7 @@
 This is just for fun, crowdsec detects via sysmon files created with custom extension (.enc) then kills the PID
 
 ### Folders:
-//`mal` is where the example `malware` lives, it just a golang project that renames a folder full of files to an extension.</br>// Dont use this anymore
-</br>
-Checkout ransomware simulator [here](https://github.com/NextronSystems/ransomware-simulator)</br>
+//`mal`\\\\ NOT USED ANYMORE Checkout ransomware simulator [here](https://github.com/NextronSystems/ransomware-simulator)</br>
 `crowdsec` has custom config files for crowdsec on windows.</br>
 `notification-pid` is a custom notification plugin that takes the pid from the Alert object and kills the process.</br>
 

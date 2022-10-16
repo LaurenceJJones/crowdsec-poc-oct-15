@@ -1,7 +1,6 @@
-# windows auth bruteforce
 type: leaky
-name: crowdsecurity/sysmon-files-created
-description: "POC detect files created with custom extension"
+name: crowdsecurity/sysmon-pid-bad-ext
+description: "Detect files created with common ransomware file extensions"
 filter: |
   evt.Meta.service == 'sysmon' &&
   evt.Parsed.EventID in ['11'] &&

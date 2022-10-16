@@ -1,0 +1,18 @@
+type: leaky
+name: crowdsecurity/sysmon-pid-excessive-file-creation
+description: "Detect a PID that is generating alot of files rapidly"
+filter: |
+  evt.Meta.service == 'sysmon' &&
+  evt.Parsed.EventID in ['11']
+
+capacity: 100
+groupby: evt.Parsed.ProcessId
+blackhole: 1m
+leakspeed: "2s"
+labels:
+ type: file-bf
+ remediation: true
+ os: windows
+scope:
+  type: pid
+  expression: evt.Parsed.ProcessId
